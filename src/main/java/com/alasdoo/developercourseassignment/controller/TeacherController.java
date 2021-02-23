@@ -4,13 +4,15 @@ import com.alasdoo.developercourseassignment.dto.TeacherDTO;
 import com.alasdoo.developercourseassignment.service.impl.TeacherServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
@@ -26,17 +28,38 @@ public class TeacherController {
     public TeacherDTO selectTeacher(@PathVariable("id") Integer id) {
         return teacherServiceImpl.findOne(id);
     }
-
+    // TODO: return the list of all the teachers
+    
+    //Finishing the method for returning a list of all the teachers
     @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<TeacherDTO> getAllTeachers() {
-        return null;
+    	 return teacherServiceImpl.findAll();
     }
 
     @PostMapping(value = "/addTeacher", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public TeacherDTO saveTeacher(@RequestBody TeacherDTO teacherDTO) {
         return teacherServiceImpl.save(teacherDTO);
     }
-
+    
+    //Writing the two missing methods based on TeacherServiceImpl.java file
+    
+    //TODO: Update a teacher
+    
+    //A method that updates a teacher based on their id
+    @PutMapping(value = "/update/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public TeacherDTO updateTeacher(@PathVariable("id") Integer id, @RequestBody TeacherDTO teacherDTO) {
+    	return teacherServiceImpl.update(id, teacherDTO);
+    }
+    
+    //TODO: Delete a teacher
+   
+    //A method that deletes a teacher based on their id
+    @DeleteMapping(value = "/delete/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteTeacher(@PathVariable("id") Integer id) {
+    	teacherServiceImpl.remove(id);
+    }
+    
+    
     @GetMapping(value = "/get/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
     public TeacherDTO findByEmail(@PathVariable("email") String email) {
         return teacherServiceImpl.findByTeacherEmail(email);
