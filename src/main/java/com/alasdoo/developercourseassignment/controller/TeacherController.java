@@ -21,53 +21,47 @@ import java.util.List;
 @CrossOrigin
 public class TeacherController {
 
-    @Autowired
-    TeacherServiceImpl teacherServiceImpl;
+	@Autowired
+	TeacherServiceImpl teacherServiceImpl;
 
-    @GetMapping(value = "/getTeacher/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public TeacherDTO selectTeacher(@PathVariable("id") Integer id) {
-        return teacherServiceImpl.findOne(id);
-    }
-    // TODO: return the list of all the teachers
-    
-    //Finishing the method for returning a list of all the teachers
-    @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<TeacherDTO> getAllTeachers() {
-    	 return teacherServiceImpl.findAll();
-    }
+	@GetMapping(value = "/getTeacher/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public TeacherDTO selectTeacher(@PathVariable("id") Integer id) {
+		return teacherServiceImpl.findOne(id);
+	}
 
-    @PostMapping(value = "/addTeacher", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public TeacherDTO saveTeacher(@RequestBody TeacherDTO teacherDTO) {
-        return teacherServiceImpl.save(teacherDTO);
-    }
-    
-    //Writing the two missing methods based on TeacherServiceImpl.java file
-    
-    //TODO: Update a teacher
-    
-    //A method that updates a teacher based on their id
-    @PutMapping(value = "/update/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public TeacherDTO updateTeacher(@PathVariable("id") Integer id, @RequestBody TeacherDTO teacherDTO) {
-    	return teacherServiceImpl.update(id, teacherDTO);
-    }
-    
-    //TODO: Delete a teacher
-   
-    //A method that deletes a teacher based on their id
-    @DeleteMapping(value = "/delete/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void deleteTeacher(@PathVariable("id") Integer id) {
-    	teacherServiceImpl.remove(id);
-    }
-    
-    
-    @GetMapping(value = "/get/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public TeacherDTO findByEmail(@PathVariable("email") String email) {
-        return teacherServiceImpl.findByTeacherEmail(email);
-    }
+	// Finishing the method for returning a list of all the teachers
+	@GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<TeacherDTO> getAllTeachers() {
+		return teacherServiceImpl.findAll();
+	}
 
-    @GetMapping(value = "/get/{name}/{surname}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public TeacherDTO findByNameAndSurname(@PathVariable("name") String name, @PathVariable("surname") String surname) {
-        return teacherServiceImpl.findByTeacherNameAndTeacherSurname(name, surname);
-    }
+	@PostMapping(value = "/addTeacher", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public TeacherDTO saveTeacher(@RequestBody TeacherDTO teacherDTO) {
+		return teacherServiceImpl.save(teacherDTO);
+	}
+
+	// Writing the two missing methods based on TeacherServiceImpl.java file
+
+	// A method that updates a teacher based on their id
+	@PutMapping(value = "/update/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public TeacherDTO updateTeacher(@PathVariable("id") Integer id, @RequestBody TeacherDTO teacherDTO) {
+		return teacherServiceImpl.update(id, teacherDTO);
+	}
+
+	// A method that deletes a teacher based on their id
+	@DeleteMapping(value = "/delete/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public void deleteTeacher(@PathVariable("id") Integer id) {
+		teacherServiceImpl.remove(id);
+	}
+
+	@GetMapping(value = "/get/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public TeacherDTO findByEmail(@PathVariable("email") String email) {
+		return teacherServiceImpl.findByTeacherEmail(email);
+	}
+
+	@GetMapping(value = "/get/{name}/{surname}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public TeacherDTO findByNameAndSurname(@PathVariable("name") String name, @PathVariable("surname") String surname) {
+		return teacherServiceImpl.findByTeacherNameAndTeacherSurname(name, surname);
+	}
 
 }
