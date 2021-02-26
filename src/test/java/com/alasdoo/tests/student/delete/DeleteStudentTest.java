@@ -1,9 +1,9 @@
-package com.alasdoo.tests.student;
+package com.alasdoo.tests.student.delete;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.alasdoo.pages.student.DeleteStudentPage;
+import com.alasdoo.pages.StudentPage;
 import com.alasdoo.tests.FunctionalTest;
 
 /***
@@ -17,7 +17,7 @@ public class DeleteStudentTest extends FunctionalTest {
 		driver.get("http://localhost:3000/student");
 
 		// initialize student page
-		DeleteStudentPage deleteStudent = new DeleteStudentPage(driver);
+		StudentPage deleteStudent = new StudentPage(driver);
 
 		// verify if page is opened
 		Assert.assertTrue(deleteStudent.isInitialized());
@@ -38,9 +38,9 @@ public class DeleteStudentTest extends FunctionalTest {
 		// wait for response to verify if the student has been added
 		Thread.sleep(2000);
 
-		// verify if adding the student has been canceled
-		String isStudentAddedUrl = driver.getCurrentUrl();
-		Assert.assertEquals(isStudentAddedUrl, "http://localhost:3000/student");
+		// verify if adding the student has been deleted
+		String isStudentDeletedUrl = driver.getCurrentUrl();
+		Assert.assertEquals(isStudentDeletedUrl, "http://localhost:3000/student");
 	}
 
 }

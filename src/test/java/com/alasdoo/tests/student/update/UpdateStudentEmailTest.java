@@ -3,7 +3,7 @@ package com.alasdoo.tests.student.update;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.alasdoo.pages.student.UpdateStudentPage;
+import com.alasdoo.pages.StudentPage;
 import com.alasdoo.tests.FunctionalTest;
 
 public class UpdateStudentEmailTest extends FunctionalTest {
@@ -19,7 +19,7 @@ public class UpdateStudentEmailTest extends FunctionalTest {
 		driver.get("http://localhost:3000/student");
 
 		// initialize student page
-		UpdateStudentPage updateStudentPage = new UpdateStudentPage(driver);
+		StudentPage updateStudentPage = new StudentPage(driver);
 
 		// verify if page is opened
 		Assert.assertTrue(updateStudentPage.isInitialized());
@@ -44,8 +44,8 @@ public class UpdateStudentEmailTest extends FunctionalTest {
 		Thread.sleep(2000);
 
 		// verify if the student has been updated
-		String isStudentAddedUrl = driver.getCurrentUrl();
-		Assert.assertEquals(isStudentAddedUrl, "http://localhost:3000/student/1");
+		String isStudentUpdatedUrl = driver.getCurrentUrl();
+		Assert.assertEquals(isStudentUpdatedUrl, "http://localhost:3000/student/1");
 
 		// perform click on Cancel(x) icon
 		updateStudentPage.exitForm();

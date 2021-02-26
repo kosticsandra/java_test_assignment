@@ -3,7 +3,7 @@ package com.alasdoo.tests.student.add;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.alasdoo.pages.student.AddStudentPage;
+import com.alasdoo.pages.StudentPage;
 import com.alasdoo.tests.FunctionalTest;
 
 /***
@@ -18,7 +18,7 @@ public class AddStudentBlankTableTest extends FunctionalTest {
 		driver.get("http://localhost:3000/student");
 
 		// initialize student page
-		AddStudentPage addStudentPage = new AddStudentPage(driver);
+		StudentPage addStudentPage = new StudentPage(driver);
 
 		// verify if page is opened
 		Assert.assertTrue(addStudentPage.isInitialized());

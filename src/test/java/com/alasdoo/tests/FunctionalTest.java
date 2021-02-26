@@ -29,7 +29,8 @@ public class FunctionalTest {
 
 	@AfterClass
 	public static void tearDown() {
-		//driver.close();
+
+		driver.close();
 	}
 
 }

@@ -3,7 +3,7 @@ package com.alasdoo.tests.student.add;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.alasdoo.pages.student.AddStudentPage;
+import com.alasdoo.pages.StudentPage;
 import com.alasdoo.tests.FunctionalTest;
 
 /***
@@ -11,6 +11,7 @@ import com.alasdoo.tests.FunctionalTest;
  */
 public class AddStudentFilledTableTest extends FunctionalTest {
 
+	
 	@Test
 	public void addStudentFilledTable() throws InterruptedException {
 
@@ -18,7 +19,7 @@ public class AddStudentFilledTableTest extends FunctionalTest {
 		driver.get("http://localhost:3000/student");
 
 		// initialize student page
-		AddStudentPage addStudentPage = new AddStudentPage(driver);
+		StudentPage addStudentPage = new StudentPage(driver);
 
 		// verify if page is opened
 		Assert.assertTrue(addStudentPage.isInitialized());
@@ -40,7 +41,7 @@ public class AddStudentFilledTableTest extends FunctionalTest {
 		addStudentPage.save();
 
 		// wait for response to verify if the student has been added
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 
 		// verify added student, if it's added to the table
 		String isStudentAddedUrl = driver.getCurrentUrl();
