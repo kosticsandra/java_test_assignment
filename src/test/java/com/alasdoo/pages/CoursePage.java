@@ -6,8 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 /***
- * An abstract class CoursePage extended by AddCoursePage, UpdateCoursePage,
- * DeleteCoursePage classes
+ * CoursePage class for Course tests
  */
 
 public class CoursePage extends PageObject {

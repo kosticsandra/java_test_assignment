@@ -6,8 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 /***
- * An abstract class TeacherPage extended by AddTeacherPage, UpdateTeacherPage,
- * DeleteTeacherPage classes
+ * TeacherPage class for Teacher tests
  */
 
 public class TeacherPage extends PageObject {
@@ -46,6 +45,10 @@ public class TeacherPage extends PageObject {
 	// in the table
 	@FindBy(xpath = "//*[@id=\"root\"]/div/main/div[2]/div[1]/div/div/div[2]/div[2]/div/div/div/div/div/div[1]")
 	private WebElement selectedTeacher;
+
+	// Toggle courses button
+	@FindBy(xpath = "//*[@id=\"root\"]/div/main/div[2]/div[2]/form/div[4]/button")
+	private WebElement toggleCoursesButton;
 
 	// Save button from the form
 	@FindBy(xpath = "//*[@data-test-id='save']")
@@ -135,6 +138,11 @@ public class TeacherPage extends PageObject {
 		updateTeacherFirstName(teacherName);
 		updateTeacherSurname(teacherSurname);
 		updateTeacherEmail(teacherEmail);
+	}
+
+	// Method for toggling courses
+	public void toggleCourses() {
+		this.toggleCoursesButton.click();
 	}
 
 	// Method that saves the new teacher and he is shown in the table
