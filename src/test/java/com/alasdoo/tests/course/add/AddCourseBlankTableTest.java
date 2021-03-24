@@ -1,10 +1,9 @@
 package com.alasdoo.tests.course.add;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.alasdoo.pages.CoursePage;
 import com.alasdoo.tests.FunctionalTest;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /***
  * Tests adding a course into a blank table
@@ -22,7 +21,7 @@ public class AddCourseBlankTableTest extends FunctionalTest {
 		CoursePage addCoursePage = new CoursePage(driver);
 
 		// verify if page is opened
-		Assert.assertTrue(addCoursePage.isInitialized());
+		Assertions.assertTrue(addCoursePage.isInitialized());
 
 		// open course page
 		addCoursePage.goToCoursePage();
@@ -32,7 +31,7 @@ public class AddCourseBlankTableTest extends FunctionalTest {
 
 		// verify if form is opened
 		String isAddCourseForm = driver.getCurrentUrl();
-		Assert.assertEquals(isAddCourseForm, "http://localhost:3000/course/new");
+		Assertions.assertEquals(isAddCourseForm, "http://localhost:3000/course/new");
 
 		// fill form data
 		addCoursePage.enterCourseData("dolorem ipsum", 70, 7);
@@ -45,7 +44,7 @@ public class AddCourseBlankTableTest extends FunctionalTest {
 
 		// verify if adding the course has been successful
 		String isCourseAddedUrl = driver.getCurrentUrl();
-		Assert.assertEquals(isCourseAddedUrl, "http://localhost:3000/course/1");
+		Assertions.assertEquals(isCourseAddedUrl, "http://localhost:3000/course/1");
 
 		// perform click on Cancel(x) icon
 		addCoursePage.exitForm();
