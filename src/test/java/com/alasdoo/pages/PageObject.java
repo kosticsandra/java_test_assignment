@@ -13,4 +13,6 @@ public abstract class PageObject {
 	}
 
 	public abstract boolean isInitialized();
+	
+	//test git comm
 }
