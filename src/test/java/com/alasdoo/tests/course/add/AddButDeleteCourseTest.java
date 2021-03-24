@@ -1,10 +1,9 @@
 package com.alasdoo.tests.course.add;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.alasdoo.pages.CoursePage;
 import com.alasdoo.tests.FunctionalTest;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /***
 * Tests adding a course, but deleting it instead
@@ -22,7 +21,7 @@ public class AddButDeleteCourseTest extends FunctionalTest {
 		CoursePage addCoursePage = new CoursePage(driver);
 
 		// verify if page is opened
-		Assert.assertTrue(addCoursePage.isInitialized());
+		Assertions.assertTrue(addCoursePage.isInitialized());
 
 		//open course page
 		addCoursePage.goToCoursePage();
@@ -32,7 +31,7 @@ public class AddButDeleteCourseTest extends FunctionalTest {
 
 		// verify if form is opened
 		String isAddCourseForm = driver.getCurrentUrl();
-		Assert.assertEquals(isAddCourseForm, "http://localhost:3000/course/new");
+		Assertions.assertEquals(isAddCourseForm, "http://localhost:3000/course/new");
 
 		// fill form data
 		addCoursePage.enterCourseData("vim ei", 80, 6);
@@ -45,7 +44,7 @@ public class AddButDeleteCourseTest extends FunctionalTest {
 
 		// verify if adding the course has been canceled
 		String isCourseAddedUrl = driver.getCurrentUrl();
-		Assert.assertEquals(isCourseAddedUrl, "http://localhost:3000/course");
+		Assertions.assertEquals(isCourseAddedUrl, "http://localhost:3000/course");
 	}
 
 
