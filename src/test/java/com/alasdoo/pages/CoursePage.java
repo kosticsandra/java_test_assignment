@@ -12,7 +12,10 @@ import org.openqa.selenium.support.FindBy;
 public class CoursePage extends PageObject {
 
 	/***
-	 * WebElement creation of the elements located on http://localhost:3000/course
+	 * WebElement 
+	 * creation of the elements
+	 *  located on 
+	 *  http://localhost:3000/course
 	 */
 
 	// WebElement for add button
