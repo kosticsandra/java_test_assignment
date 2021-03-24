@@ -12,15 +12,15 @@ import org.openqa.selenium.support.FindBy;
 public class CoursePage extends PageObject {
 
 	/***
-	 * WebElement 
-	 * creation of the elements
-	 *  located on 
-	 *  http://localhost:3000/course
+	 * WebElement creation of the elements located on http://localhost:3000/course
 	 */
 
 	// WebElement for add button
 	@FindBy(xpath = "//*[@id=\"root\"]/div/main/div[2]/button")
 	private WebElement addButton;
+	// WebElement for add button
+	@FindBy(xpath = "//*[@id=\"root\"]/div/main/div[2]/button")
+	private WebElement addButton1;
 
 	// Settings
 	@FindBy(xpath = "//*[@id=\"root\"]/div/div/div/nav/a[4]")
@@ -79,7 +79,7 @@ public class CoursePage extends PageObject {
 		}
 
 		this.courseButton.click();
-	
+
 	}
 
 	// Method that selects a course from the list
