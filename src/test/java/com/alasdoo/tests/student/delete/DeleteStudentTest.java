@@ -1,7 +1,7 @@
 package com.alasdoo.tests.student.delete;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.alasdoo.pages.StudentPage;
 import com.alasdoo.tests.FunctionalTest;
@@ -20,7 +20,7 @@ public class DeleteStudentTest extends FunctionalTest {
 		StudentPage deleteStudent = new StudentPage(driver);
 
 		// verify if page is opened
-		Assert.assertTrue(deleteStudent.isInitialized());
+		Assertions.assertTrue(deleteStudent.isInitialized());
 
 		// perform click actions
 		deleteStudent.getAllStudents();
@@ -30,7 +30,7 @@ public class DeleteStudentTest extends FunctionalTest {
 
 		// verify if form is opened
 		String isDeleteStudentForm = driver.getCurrentUrl();
-		Assert.assertEquals(isDeleteStudentForm, "http://localhost:3000/student/1");
+		Assertions.assertEquals(isDeleteStudentForm, "http://localhost:3000/student/1");
 
 		// perform click on delete button
 		deleteStudent.delete();
@@ -40,7 +40,7 @@ public class DeleteStudentTest extends FunctionalTest {
 
 		// verify if adding the student has been deleted
 		String isStudentDeletedUrl = driver.getCurrentUrl();
-		Assert.assertEquals(isStudentDeletedUrl, "http://localhost:3000/student");
+		Assertions.assertEquals(isStudentDeletedUrl, "http://localhost:3000/student");
 	}
 
 }

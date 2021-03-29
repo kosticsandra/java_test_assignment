@@ -1,7 +1,7 @@
 package com.alasdoo.tests.teacher.toggle_courses;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.alasdoo.pages.TeacherPage;
 import com.alasdoo.pages.ToggleCoursesPage;
@@ -26,7 +26,7 @@ public class TeacherToggleCoursesUpdateButCancelTest extends FunctionalTest {
 		ToggleCoursesPage toggleCoursePage = new ToggleCoursesPage(driver);
 
 		// verify if page is opened
-		Assert.assertTrue(cancelUpdateTeacherCourse.isInitialized());
+		Assertions.assertTrue(cancelUpdateTeacherCourse.isInitialized());
 
 		// perform click actions
 		cancelUpdateTeacherCourse.getAllTeachers();
@@ -36,7 +36,7 @@ public class TeacherToggleCoursesUpdateButCancelTest extends FunctionalTest {
 
 		// verify if form is opened
 		String isCanceledTeacherCourseForm = driver.getCurrentUrl();
-		Assert.assertEquals(isCanceledTeacherCourseForm, "http://localhost:3000/teacher/1");
+		Assertions.assertEquals(isCanceledTeacherCourseForm, "http://localhost:3000/teacher/1");
 
 		// toggle courses
 		cancelUpdateTeacherCourse.toggleCourses();
@@ -52,7 +52,7 @@ public class TeacherToggleCoursesUpdateButCancelTest extends FunctionalTest {
 
 		// verify selected course, if the action is canceled
 		String isCourseCanceledUrl = driver.getCurrentUrl();
-		Assert.assertEquals(isCourseCanceledUrl, "http://localhost:3000/teacher/1/courses");
+		Assertions.assertEquals(isCourseCanceledUrl, "http://localhost:3000/teacher/1/courses");
 
 		// perform click on Cancel(x) icon
 		cancelUpdateTeacherCourse.exitForm();

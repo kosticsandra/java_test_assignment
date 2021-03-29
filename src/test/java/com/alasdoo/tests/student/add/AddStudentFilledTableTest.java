@@ -1,7 +1,7 @@
 package com.alasdoo.tests.student.add;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.alasdoo.pages.StudentPage;
 import com.alasdoo.tests.FunctionalTest;
@@ -22,7 +22,7 @@ public class AddStudentFilledTableTest extends FunctionalTest {
 		StudentPage addStudentPage = new StudentPage(driver);
 
 		// verify if page is opened
-		Assert.assertTrue(addStudentPage.isInitialized());
+		Assertions.assertTrue(addStudentPage.isInitialized());
 
 		// perform click actions
 		addStudentPage.getAllStudents();
@@ -32,7 +32,7 @@ public class AddStudentFilledTableTest extends FunctionalTest {
 
 		// verify if form is opened
 		String isAddStudentForm = driver.getCurrentUrl();
-		Assert.assertEquals(isAddStudentForm, "http://localhost:3000/student/new");
+		Assertions.assertEquals(isAddStudentForm, "http://localhost:3000/student/new");
 
 		// fill form data
 		addStudentPage.enterStudentData("John", "Doe", "JohnD", "johndoe@test.com", 445566);
@@ -45,7 +45,7 @@ public class AddStudentFilledTableTest extends FunctionalTest {
 
 		// verify added student, if it's added to the table
 		String isStudentAddedUrl = driver.getCurrentUrl();
-		Assert.assertEquals(isStudentAddedUrl, "http://localhost:3000/student/21");
+		Assertions.assertEquals(isStudentAddedUrl, "http://localhost:3000/student/21");
 
 		// perform click on Cancel(x) icon
 		addStudentPage.exitForm();

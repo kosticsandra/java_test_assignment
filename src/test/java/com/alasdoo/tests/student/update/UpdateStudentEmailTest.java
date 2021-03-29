@@ -1,7 +1,7 @@
 package com.alasdoo.tests.student.update;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.alasdoo.pages.StudentPage;
 import com.alasdoo.tests.FunctionalTest;
@@ -22,7 +22,7 @@ public class UpdateStudentEmailTest extends FunctionalTest {
 		StudentPage updateStudentPage = new StudentPage(driver);
 
 		// verify if page is opened
-		Assert.assertTrue(updateStudentPage.isInitialized());
+		Assertions.assertTrue(updateStudentPage.isInitialized());
 
 		// perform click actions
 		updateStudentPage.getAllStudents();
@@ -32,7 +32,7 @@ public class UpdateStudentEmailTest extends FunctionalTest {
 
 		// verify if form is opened
 		String isUpdateStudentForm = driver.getCurrentUrl();
-		Assert.assertEquals(isUpdateStudentForm, "http://localhost:3000/student/1");
+		Assertions.assertEquals(isUpdateStudentForm, "http://localhost:3000/student/1");
 
 		// fill form data
 		updateStudentPage.updateStudentsEmail("jamie.ol@gmail.com");
@@ -45,7 +45,7 @@ public class UpdateStudentEmailTest extends FunctionalTest {
 
 		// verify if the student has been updated
 		String isStudentUpdatedUrl = driver.getCurrentUrl();
-		Assert.assertEquals(isStudentUpdatedUrl, "http://localhost:3000/student/1");
+		Assertions.assertEquals(isStudentUpdatedUrl, "http://localhost:3000/student/1");
 
 		// perform click on Cancel(x) icon
 		updateStudentPage.exitForm();

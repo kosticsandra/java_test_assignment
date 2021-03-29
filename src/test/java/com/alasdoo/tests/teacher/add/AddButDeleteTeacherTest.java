@@ -1,7 +1,7 @@
 package com.alasdoo.tests.teacher.add;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.alasdoo.pages.TeacherPage;
 import com.alasdoo.tests.FunctionalTest;
@@ -21,7 +21,7 @@ public class AddButDeleteTeacherTest extends FunctionalTest {
 		TeacherPage addTeacherPage = new TeacherPage(driver);
 
 		// verify if page is opened
-		Assert.assertTrue(addTeacherPage.isInitialized());
+		Assertions.assertTrue(addTeacherPage.isInitialized());
 		
 		//open teacher page
 		addTeacherPage.goToTeacherPage();
@@ -31,7 +31,7 @@ public class AddButDeleteTeacherTest extends FunctionalTest {
 
 		// verify if form is opened
 		String isAddTeacherForm = driver.getCurrentUrl();
-		Assert.assertEquals(isAddTeacherForm, "http://localhost:3000/teacher/new");
+		Assertions.assertEquals(isAddTeacherForm, "http://localhost:3000/teacher/new");
 
 		// fill form data
 		addTeacherPage.enterTeacherData("Bella", "Gray", "bela.gray@gmail.com");
@@ -44,7 +44,7 @@ public class AddButDeleteTeacherTest extends FunctionalTest {
 
 		// verify if adding the teacher has been canceled
 		String isTeacherAddedUrl = driver.getCurrentUrl();
-		Assert.assertEquals(isTeacherAddedUrl, "http://localhost:3000/teacher");
+		Assertions.assertEquals(isTeacherAddedUrl, "http://localhost:3000/teacher");
 	}
 
 }

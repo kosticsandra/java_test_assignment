@@ -1,7 +1,7 @@
 package com.alasdoo.tests.course.update;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.alasdoo.pages.CoursePage;
 import com.alasdoo.tests.FunctionalTest;
@@ -21,7 +21,7 @@ public class UpdateCourseClassesPerWeekTest extends FunctionalTest {
 		CoursePage updateCoursePage = new CoursePage(driver);
 
 		// verify if page is opened
-		Assert.assertTrue(updateCoursePage.isInitialized());
+		Assertions.assertTrue(updateCoursePage.isInitialized());
 
 		// perform click actions
 		updateCoursePage.getAllCourses();
@@ -31,7 +31,7 @@ public class UpdateCourseClassesPerWeekTest extends FunctionalTest {
 
 		// verify if form is opened
 		String isUpdateButDeleteCourseForm = driver.getCurrentUrl();
-		Assert.assertEquals(isUpdateButDeleteCourseForm, "http://localhost:3000/course/1");
+		Assertions.assertEquals(isUpdateButDeleteCourseForm, "http://localhost:3000/course/1");
 
 		// fill form data
 		updateCoursePage.updateCoursesClassesPerWeek(9);
@@ -44,7 +44,7 @@ public class UpdateCourseClassesPerWeekTest extends FunctionalTest {
 
 		// verify if the course is updated
 		String isCourseClassesPerWeekUpdatedUrl = driver.getCurrentUrl();
-		Assert.assertEquals(isCourseClassesPerWeekUpdatedUrl, "http://localhost:3000/course/1");
+		Assertions.assertEquals(isCourseClassesPerWeekUpdatedUrl, "http://localhost:3000/course/1");
 
 		// perform click on Cancel(x) icon
 		updateCoursePage.exitForm();

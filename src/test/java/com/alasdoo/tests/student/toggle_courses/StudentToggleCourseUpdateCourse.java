@@ -1,7 +1,7 @@
 package com.alasdoo.tests.student.toggle_courses;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.alasdoo.pages.StudentPage;
 import com.alasdoo.pages.ToggleCoursesPage;
@@ -26,7 +26,7 @@ public class StudentToggleCourseUpdateCourse extends FunctionalTest {
 		ToggleCoursesPage toggleCoursePage = new ToggleCoursesPage(driver);
 
 		// verify if page is opened
-		Assert.assertTrue(updateStudentPage.isInitialized());
+		Assertions.assertTrue(updateStudentPage.isInitialized());
 
 		// perform click actions
 		updateStudentPage.getAllStudents();
@@ -36,7 +36,7 @@ public class StudentToggleCourseUpdateCourse extends FunctionalTest {
 
 		// verify if form is opened
 		String isAddStudentCourseForm = driver.getCurrentUrl();
-		Assert.assertEquals(isAddStudentCourseForm, "http://localhost:3000/student/1");
+		Assertions.assertEquals(isAddStudentCourseForm, "http://localhost:3000/student/1");
 
 		// toggle courses
 		updateStudentPage.toggleCourses();
@@ -55,7 +55,7 @@ public class StudentToggleCourseUpdateCourse extends FunctionalTest {
 
 		// verify if the course was updated
 		String isCourseUpdatedUrl = driver.getCurrentUrl();
-		Assert.assertEquals(isCourseUpdatedUrl, "http://localhost:3000/student/1/courses");
+		Assertions.assertEquals(isCourseUpdatedUrl, "http://localhost:3000/student/1/courses");
 
 		// perform click on Cancel(x) icon
 		updateStudentPage.exitForm();

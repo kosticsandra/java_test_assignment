@@ -1,7 +1,7 @@
 package com.alasdoo.tests.course.update;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.alasdoo.pages.CoursePage;
 import com.alasdoo.tests.FunctionalTest;
@@ -21,7 +21,7 @@ public class UpdateButDeleteCourseTest extends FunctionalTest {
 		CoursePage updateButDeleteCoursePage = new CoursePage(driver);
 
 		// verify if page is opened
-		Assert.assertTrue(updateButDeleteCoursePage.isInitialized());
+		Assertions.assertTrue(updateButDeleteCoursePage.isInitialized());
 
 		// perform click actions
 		updateButDeleteCoursePage.getAllCourses();
@@ -31,7 +31,7 @@ public class UpdateButDeleteCourseTest extends FunctionalTest {
 
 		// verify if form is opened
 		String isUpdateButDeleteCourseForm = driver.getCurrentUrl();
-		Assert.assertEquals(isUpdateButDeleteCourseForm, "http://localhost:3000/course/1");
+		Assertions.assertEquals(isUpdateButDeleteCourseForm, "http://localhost:3000/course/1");
 
 		// fill form data
 		updateButDeleteCoursePage.updateAllCourseData("Neque porro", 66, 5);
@@ -44,7 +44,7 @@ public class UpdateButDeleteCourseTest extends FunctionalTest {
 
 		// verify if the course is updated
 		String isCourseUpdatedButDeletedUrl = driver.getCurrentUrl();
-		Assert.assertEquals(isCourseUpdatedButDeletedUrl, "http://localhost:3000/course");
+		Assertions.assertEquals(isCourseUpdatedButDeletedUrl, "http://localhost:3000/course");
 	}
 
 }

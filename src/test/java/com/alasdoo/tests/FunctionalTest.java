@@ -1,7 +1,6 @@
 package com.alasdoo.tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.aspectj.lang.annotation.After;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;

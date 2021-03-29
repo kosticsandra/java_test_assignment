@@ -1,7 +1,7 @@
 package com.alasdoo.tests.teacher.toggle_courses;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.alasdoo.pages.TeacherPage;
 import com.alasdoo.pages.ToggleCoursesPage;
@@ -26,7 +26,7 @@ public class TeacherToggleCoursesDeleteCourseTest extends FunctionalTest {
 		ToggleCoursesPage toggleCoursePage = new ToggleCoursesPage(driver);
 
 		// verify if page is opened
-		Assert.assertTrue(deleteTeacherCoursePage.isInitialized());
+		Assertions.assertTrue(deleteTeacherCoursePage.isInitialized());
 
 		// perform click actions
 		deleteTeacherCoursePage.getAllTeachers();
@@ -36,7 +36,7 @@ public class TeacherToggleCoursesDeleteCourseTest extends FunctionalTest {
 
 		// verify if form is opened
 		String isDeleteTeacherCourseForm = driver.getCurrentUrl();
-		Assert.assertEquals(isDeleteTeacherCourseForm, "http://localhost:3000/teacher/1");
+		Assertions.assertEquals(isDeleteTeacherCourseForm, "http://localhost:3000/teacher/1");
 
 		// toggle courses
 		deleteTeacherCoursePage.toggleCourses();
@@ -52,7 +52,7 @@ public class TeacherToggleCoursesDeleteCourseTest extends FunctionalTest {
 
 		// verify selected course, if it's deleted from
 		String isCourseDeletedUrl = driver.getCurrentUrl();
-		Assert.assertEquals(isCourseDeletedUrl, "http://localhost:3000/teacher/1/courses");
+		Assertions.assertEquals(isCourseDeletedUrl, "http://localhost:3000/teacher/1/courses");
 
 		// perform click on Cancel(x) icon
 		deleteTeacherCoursePage.exitForm();

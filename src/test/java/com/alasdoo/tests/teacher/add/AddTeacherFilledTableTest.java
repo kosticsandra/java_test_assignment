@@ -1,7 +1,7 @@
 package com.alasdoo.tests.teacher.add;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.alasdoo.pages.TeacherPage;
 import com.alasdoo.tests.FunctionalTest;
@@ -22,7 +22,7 @@ public class AddTeacherFilledTableTest extends FunctionalTest {
 		TeacherPage addTeacherPage = new TeacherPage(driver);
 
 		// verify if page is opened
-		Assert.assertTrue(addTeacherPage.isInitialized());
+		Assertions.assertTrue(addTeacherPage.isInitialized());
 
 		// fill the table with teachers
 		addTeacherPage.getAllTeachers();
@@ -35,7 +35,7 @@ public class AddTeacherFilledTableTest extends FunctionalTest {
 
 		// verify if form is opened
 		String isAddTeacherForm = driver.getCurrentUrl();
-		Assert.assertEquals(isAddTeacherForm, "http://localhost:3000/teacher/new");
+		Assertions.assertEquals(isAddTeacherForm, "http://localhost:3000/teacher/new");
 
 		// fill form data
 		addTeacherPage.enterTeacherData("Cillian", "Murphy", "cillian.murphy@gmail.com");
@@ -48,7 +48,7 @@ public class AddTeacherFilledTableTest extends FunctionalTest {
 
 		// verify if adding the teacher has been successful
 		String isTeacherAddedUrl = driver.getCurrentUrl();
-		Assert.assertEquals(isTeacherAddedUrl, "http://localhost:3000/teacher/21");
+		Assertions.assertEquals(isTeacherAddedUrl, "http://localhost:3000/teacher/21");
 
 		// perform click on Cancel(x) icon
 		addTeacherPage.exitForm();

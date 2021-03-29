@@ -1,7 +1,7 @@
 package com.alasdoo.tests.teacher.update;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.alasdoo.pages.TeacherPage;
 import com.alasdoo.tests.FunctionalTest;
@@ -11,7 +11,7 @@ import com.alasdoo.tests.FunctionalTest;
  */
 
 public class UpdateTeacherNameTest extends FunctionalTest {
-	
+
 	@Test
 	public void updateTeacherName() throws InterruptedException {
 		// open landing page on UI
@@ -21,7 +21,7 @@ public class UpdateTeacherNameTest extends FunctionalTest {
 		TeacherPage updateTeacherPage = new TeacherPage(driver);
 
 		// verify if page is opened
-		Assert.assertTrue(updateTeacherPage.isInitialized());
+		Assertions.assertTrue(updateTeacherPage.isInitialized());
 
 		// perform click actions
 		updateTeacherPage.getAllTeachers();
@@ -31,7 +31,7 @@ public class UpdateTeacherNameTest extends FunctionalTest {
 
 		// verify if form is opened
 		String isUpdateStudentForm = driver.getCurrentUrl();
-		Assert.assertEquals(isUpdateStudentForm, "http://localhost:3000/teacher/1");
+		Assertions.assertEquals(isUpdateStudentForm, "http://localhost:3000/teacher/1");
 
 		// fill form data
 		updateTeacherPage.updateTeacherFirstName("Delilah");
@@ -44,11 +44,10 @@ public class UpdateTeacherNameTest extends FunctionalTest {
 
 		// verify if the teacher has been updated
 		String isTeacherUpdatedUrl = driver.getCurrentUrl();
-		Assert.assertEquals(isTeacherUpdatedUrl, "http://localhost:3000/teacher/1");
+		Assertions.assertEquals(isTeacherUpdatedUrl, "http://localhost:3000/teacher/1");
 
 		// perform click on Cancel(x) icon
 		updateTeacherPage.exitForm();
 	}
-
 
 }

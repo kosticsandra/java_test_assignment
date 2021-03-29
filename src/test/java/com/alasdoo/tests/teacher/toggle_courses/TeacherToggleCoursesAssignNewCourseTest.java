@@ -1,7 +1,7 @@
 package com.alasdoo.tests.teacher.toggle_courses;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.alasdoo.pages.TeacherPage;
 import com.alasdoo.pages.ToggleCoursesPage;
@@ -26,7 +26,7 @@ public class TeacherToggleCoursesAssignNewCourseTest extends FunctionalTest {
 		ToggleCoursesPage toggleCoursePage = new ToggleCoursesPage(driver);
 
 		// verify if page is opened
-		Assert.assertTrue(assignTeacherCoursePage.isInitialized());
+		Assertions.assertTrue(assignTeacherCoursePage.isInitialized());
 
 		// perform click actions
 		assignTeacherCoursePage.getAllTeachers();
@@ -36,7 +36,7 @@ public class TeacherToggleCoursesAssignNewCourseTest extends FunctionalTest {
 
 		// verify if form is opened
 		String isAddTeacherCourseForm = driver.getCurrentUrl();
-		Assert.assertEquals(isAddTeacherCourseForm, "http://localhost:3000/teacher/1");
+		Assertions.assertEquals(isAddTeacherCourseForm, "http://localhost:3000/teacher/1");
 
 		// toggle courses
 		assignTeacherCoursePage.toggleCourses();
@@ -52,7 +52,7 @@ public class TeacherToggleCoursesAssignNewCourseTest extends FunctionalTest {
 
 		// verify added course, if it's added to the table
 		String isCourseAssignedUrl = driver.getCurrentUrl();
-		Assert.assertEquals(isCourseAssignedUrl, "http://localhost:3000/teacher/1/courses");
+		Assertions.assertEquals(isCourseAssignedUrl, "http://localhost:3000/teacher/1/courses");
 
 		// perform click on Cancel(x) icon
 		assignTeacherCoursePage.exitForm();
