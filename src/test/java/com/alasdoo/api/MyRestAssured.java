@@ -1,22 +1,27 @@
 package com.alasdoo.api;
 
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
+import static io.restassured.RestAssured.get;
+
+import java.util.HashMap;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+
 public class MyRestAssured {
+
 	@BeforeAll
 	public static void setup() {
-		RestAssured.baseURI = "https://reqres.in";
+		RestAssured.baseURI = "https://reqres.in/api";
 	}
 
-	// @Test
+//	 @Test
 	public void test() {
 
-		Response response = RestAssured.get("https://reqres.in/api/users?page=2");
+		Response response = get("https://reqres.in/api/users?page=2");
 		System.out.println(response.statusCode());
 		System.out.println(response.asString());
 		System.out.println(response.getBody().asString());
@@ -29,80 +34,100 @@ public class MyRestAssured {
 
 	// @Test
 	public void getOneUser() {
-		Response response = RestAssured.given().contentType(ContentType.JSON).when().get("/api/users/2").then()
-				.extract().response();
+		Integer userId = 2;
+		Integer statusCode = 200;
+		Response response = RestAssuredManager.getResponse("/users/", userId);
 
-		Assertions.assertEquals(200, response.statusCode());
+		HashMap<String, ?> responseMap = response.getBody().jsonPath().get("data");
+		Integer responseId = (Integer) responseMap.get("id");
+
+		Assertions.assertEquals(statusCode, response.statusCode());
+		Assertions.assertEquals(userId, responseId);
+
 	}
 
 	// @Test
 	public void userNotFound() {
-		Response response = RestAssured.given().contentType(ContentType.JSON).when().get("/api/users/23").then()
-				.extract().response();
-
-		Assertions.assertEquals(404, response.statusCode());
+		Integer userId = 23;
+		Integer statusCode = 404;
+		Response response = RestAssuredManager.getResponse("/users/", userId);
+		Assertions.assertEquals(statusCode, response.statusCode());
 	}
 
-	//@Test
+	// @Test
 	public void getAllUsers() {
-		Response response = RestAssured.given().contentType(ContentType.JSON).when().get("/api/unknown").then()
-				.extract().response();
-
-		System.out.println(response.getBody().asString());
-
-		Assertions.assertEquals(200, response.statusCode());
+		Integer statusCode = 200;
+		Response response = RestAssuredManager.getResponse("/unknown");
+		Assertions.assertEquals(statusCode, response.statusCode());
+		// System.out.println(response.jsonPath().prettify());
 	}
-
-	private static String requestBody = "{\n" + "  \"name\": \"morpheus\",\n" + "  \"job\": \"leader\"\n" + "  \n}";
 
 	// @Test
 	public void createUser() {
-		Response response = RestAssured.given().header("Content-type", "application/json").and().body(requestBody)
-				.when().post("/api/users").then().extract().response();
-		Assertions.assertEquals(201, response.statusCode());
-		Assertions.assertEquals("morpheus", response.jsonPath().getString("name"));
-		Assertions.assertEquals("leader", response.jsonPath().getString("job"));
+		Integer statusCode = 201;
+
+		HashMap<String, String> newUser = new HashMap<>();
+		newUser.put("name", "morpheus");
+		newUser.put("job", "leader");
+
+		Response response = RestAssuredManager.updateResponse("post", "/users", newUser);
+
+		Assertions.assertEquals(statusCode, response.statusCode());
+		Assertions.assertEquals(newUser.get("name"), response.jsonPath().getString("name"));
+		Assertions.assertEquals(newUser.get("job"), response.jsonPath().getString("job"));
+
 	}
 
-	private static String requestBody2 = "{\n" + "  \"name\": \"morpheus\",\n" + "  \"job\": \"zion resident\"\n"
-			+ " \n}";
+	// @Test
+	public void userRegisteredSuccessfully() {
+		Integer statusCode = 200;
+
+		HashMap<String, String> newUser = new HashMap<>();
+		newUser.put("email", "eve.holt@reqres.in");
+		newUser.put("password", "pistol");
+
+		Response response = RestAssuredManager.updateResponse("post", "/register", newUser);
+		Assertions.assertEquals(statusCode, response.statusCode());
+
+	}
 
 	// @Test
 	public void updatePutUser() {
-		Response response = RestAssured.given().header("Content-type", "application/json").and().body(requestBody2)
-				.when().put("/api/users/2").then().extract().response();
+		Integer statusCode = 200;
+		HashMap<String, String> updatedUser = new HashMap<>();
+		updatedUser.put("name", "morpheus");
+		updatedUser.put("job", "zion resident");
+		updatedUser.put("id", "2");
 
-		Assertions.assertEquals(200, response.statusCode());
-		Assertions.assertEquals("morpheus", response.jsonPath().getString("name"));
-		Assertions.assertEquals("zion resident", response.jsonPath().getString("job"));
-	}
-	
-	//@Test
-	public void updatePatchUser() {
-		Response response = RestAssured.given().header("Content-type", "application/json").and().body(requestBody2)
-				.when().patch("/api/users/2").then().extract().response();
+		Response response = RestAssuredManager.updateResponse("put", "/users/", updatedUser);
 
-		Assertions.assertEquals(200, response.statusCode());
-		Assertions.assertEquals("morpheus", response.jsonPath().getString("name"));
-		Assertions.assertEquals("zion resident", response.jsonPath().getString("job"));
+		Assertions.assertEquals(statusCode, response.statusCode());
+		Assertions.assertEquals(updatedUser.get("name"), response.jsonPath().getString("name"));
+		Assertions.assertEquals(updatedUser.get("job"), response.jsonPath().getString("job"));
 	}
 
 	// @Test
-	public void deleteUser() {
-		Response response = RestAssured.given().header("Content-type", "application/json").when().delete("/api/users/2")
-				.then().extract().response();
+	public void updatePatchUser() {
+		Integer statusCode = 200;
+		HashMap<String, String> patchedUser = new HashMap<>();
+		patchedUser.put("name", "morpheus");
+		patchedUser.put("job", "matrix master");
+		patchedUser.put("id", "2");
 
-		int statusCode = response.getStatusCode();
-		Assertions.assertEquals(statusCode, 204);
+		Response response = RestAssuredManager.updateResponse("patch", "/users/", patchedUser);
+
+		Assertions.assertEquals(statusCode, response.statusCode());
+		Assertions.assertEquals(patchedUser.get("name"), response.jsonPath().getString("name"));
+		Assertions.assertEquals(patchedUser.get("job"), response.jsonPath().getString("job"));
 	}
-	private static String requestBody3 = "{\n" + "  \"email\": \"eve.holt@reqres.in\",\n" + "  \"password\": \"pistol\"\n"
-			+ " \n}";
+
 	@Test
-	public void userRegisteredSuccessfully() {
-		Response response = RestAssured.given().header("Content-type", "application/json").and().body(requestBody3)
-				.when().post("/api/register").then().extract().response();
-		Assertions.assertEquals(200, response.statusCode());
-		
+	public void deleteUser() {
+		Integer userId = 2;
+		Integer statusCode = 204;
+		Response response = RestAssuredManager.deleteUser("/users/", userId);
+
+		Assertions.assertEquals(statusCode, response.statusCode());
 	}
 
 }
