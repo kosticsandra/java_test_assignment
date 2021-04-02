@@ -33,7 +33,7 @@ public class MyRestAssured {
 	}
 
 	// @Test
-	public void getOneUser() {
+	public void test_GetOneUser() {
 		Integer userId = 2;
 		Integer statusCode = 200;
 		Response response = RestAssuredManager.getResponse("/users/", userId);
@@ -75,6 +75,7 @@ public class MyRestAssured {
 		Assertions.assertEquals(statusCode, response.statusCode());
 		Assertions.assertEquals(newUser.get("name"), response.jsonPath().getString("name"));
 		Assertions.assertEquals(newUser.get("job"), response.jsonPath().getString("job"));
+		System.out.println(response.getCookies());
 
 	}
 
@@ -106,7 +107,7 @@ public class MyRestAssured {
 		Assertions.assertEquals(updatedUser.get("job"), response.jsonPath().getString("job"));
 	}
 
-	// @Test
+	 @Test
 	public void updatePatchUser() {
 		Integer statusCode = 200;
 		HashMap<String, String> patchedUser = new HashMap<>();
@@ -121,7 +122,7 @@ public class MyRestAssured {
 		Assertions.assertEquals(patchedUser.get("job"), response.jsonPath().getString("job"));
 	}
 
-	@Test
+	//@Test
 	public void deleteUser() {
 		Integer userId = 2;
 		Integer statusCode = 204;
