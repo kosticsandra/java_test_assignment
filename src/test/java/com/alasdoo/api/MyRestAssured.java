@@ -18,7 +18,7 @@ public class MyRestAssured {
 		RestAssured.baseURI = "https://reqres.in/api";
 	}
 
-//	 @Test
+	@Test
 	public void test() {
 
 		Response response = get("https://reqres.in/api/users?page=2");
@@ -32,7 +32,7 @@ public class MyRestAssured {
 
 	}
 
-	// @Test
+	@Test
 	public void test_GetOneUser() {
 		Integer userId = 2;
 		Integer statusCode = 200;
@@ -46,24 +46,24 @@ public class MyRestAssured {
 
 	}
 
-	// @Test
-	public void userNotFound() {
+	@Test
+	public void test_userNotFound() {
 		Integer userId = 23;
 		Integer statusCode = 404;
 		Response response = RestAssuredManager.getResponse("/users/", userId);
 		Assertions.assertEquals(statusCode, response.statusCode());
 	}
 
-	// @Test
-	public void getAllUsers() {
+	@Test
+	public void test_getAllUsers() {
 		Integer statusCode = 200;
 		Response response = RestAssuredManager.getResponse("/unknown");
 		Assertions.assertEquals(statusCode, response.statusCode());
 		// System.out.println(response.jsonPath().prettify());
 	}
 
-	// @Test
-	public void createUser() {
+	@Test
+	public void test_createUser() {
 		Integer statusCode = 201;
 
 		HashMap<String, String> newUser = new HashMap<>();
@@ -79,8 +79,8 @@ public class MyRestAssured {
 
 	}
 
-	// @Test
-	public void userRegisteredSuccessfully() {
+	@Test
+	public void test_userRegisteredSuccessfully() {
 		Integer statusCode = 200;
 
 		HashMap<String, String> newUser = new HashMap<>();
@@ -92,8 +92,8 @@ public class MyRestAssured {
 
 	}
 
-	// @Test
-	public void updatePutUser() {
+	@Test
+	public void test_updatePutUser() {
 		Integer statusCode = 200;
 		HashMap<String, String> updatedUser = new HashMap<>();
 		updatedUser.put("name", "morpheus");
@@ -107,8 +107,8 @@ public class MyRestAssured {
 		Assertions.assertEquals(updatedUser.get("job"), response.jsonPath().getString("job"));
 	}
 
-	 @Test
-	public void updatePatchUser() {
+	@Test
+	public void test_updatePatchUser() {
 		Integer statusCode = 200;
 		HashMap<String, String> patchedUser = new HashMap<>();
 		patchedUser.put("name", "morpheus");
@@ -122,8 +122,8 @@ public class MyRestAssured {
 		Assertions.assertEquals(patchedUser.get("job"), response.jsonPath().getString("job"));
 	}
 
-	//@Test
-	public void deleteUser() {
+	@Test
+	public void test_deleteUser() {
 		Integer userId = 2;
 		Integer statusCode = 204;
 		Response response = RestAssuredManager.deleteUser("/users/", userId);
